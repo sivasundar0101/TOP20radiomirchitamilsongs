@@ -1,8 +1,10 @@
 import requests
+import os
 from bs4 import BeautifulSoup
 import pandas as pd
 
-
+home=os.getcwd()
+path=os.path.join(home,"radio.xlsx")
 x = requests.get('https://www.radiomirchi.com/more/tamil-top-20')
 
 soup = BeautifulSoup(x.text)
@@ -17,5 +19,5 @@ for i in range(len(top20)):
 
 top20excel = pd.DataFrame({"TOP 20_Tamil_Songs" :  arr[1:]})
 
-top20excel.to_excel(r"C:\Users\sivasundar\PycharmProjects\storefront\radio.xlsx", sheet_name = 'testsheet',float_format =" %.2f " ,index=False)
+top20excel.to_excel(path, sheet_name = 'testsheet',float_format =" %.2f " ,index=False)
 
